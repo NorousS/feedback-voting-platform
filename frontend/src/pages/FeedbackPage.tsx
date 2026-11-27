@@ -1,5 +1,7 @@
 import { useState, type FormEvent } from 'react'
+
 import { Button, PageTitle, Panel } from '@feedback/ui'
+
 import { api } from '../api'
 import { Alert } from '../components/Alert'
 
@@ -13,7 +15,10 @@ export function FeedbackPage() {
     event.preventDefault()
     setError('')
     setStatus('')
-    if (!message.trim()) { setError('Введите отзыв'); return }
+
+    if (!message.trim()) { setError('Введите отзыв')
+
+      return }
 
     try {
       await api.addFeedback(name, message)

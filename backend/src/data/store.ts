@@ -1,4 +1,5 @@
 import { randomUUID } from 'node:crypto'
+
 import type { Feedback, Survey, SurveyResults, SurveySummary } from '../types.js'
 
 const seeds: Survey[] = [
@@ -53,6 +54,7 @@ export function createStore(initial: Survey[] = seeds) {
     },
     results(id: string): SurveyResults | undefined {
       const survey = getSurvey(id)
+
       if (!survey) return undefined
       const info = summary(survey)
 
@@ -71,18 +73,24 @@ export function createStore(initial: Survey[] = seeds) {
         description,
         options: options.map((text) => ({ id: randomUUID(), text, votes: 0 }))
       }
+
       surveys.push(survey)
+
       return survey
     },
     vote(surveyId: string, optionId: string): boolean {
       const option = getSurvey(surveyId)?.options.find((item) => item.id === optionId)
+
       if (!option) return false
       option.votes += 1
+
       return true
     },
     addFeedback(name: string, message: string): Feedback {
       const entry: Feedback = { id: randomUUID(), name, message, createdAt: new Date().toISOString() }
+
       feedback.push(entry)
+
       return entry
     }
   }

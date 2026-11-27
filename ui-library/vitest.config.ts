@@ -7,7 +7,7 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       include: ['src/components/Button.tsx'],
-      thresholds: { lines: 70, statements: 70, branches: 70, functions: 70 }
+      thresholds: { lines: 90, statements: 90, branches: 90, functions: 90 }
     }
   }
 })
